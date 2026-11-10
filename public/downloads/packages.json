@@ -1,0 +1,44 @@
+[
+  {
+    "name": "ROBO.zip",
+    "file": "downloads/software/robo-base.zip",
+    "bytes": 344471554,
+    "sha256": "511b18d3ae749bfee125dbda09f8d6c7058571d43cee4bb19fe2c647db0d370f"
+  },
+  {
+    "name": "待办日历.zip",
+    "file": "downloads/plugins/todo-calendar.zip",
+    "bytes": 29859,
+    "sha256": "9aa0e8e408fa37ab8751dbfe43b48b1aa8a9df54fe89ff4e10c3e579e939bd97"
+  },
+  {
+    "name": "番茄钟.zip",
+    "file": "downloads/plugins/pomodoro.zip",
+    "bytes": 6668,
+    "sha256": "132ab23e4c77c59b4c1ba5151f867eefc46280dcd2def267564caf7571086f1a"
+  },
+  {
+    "name": "互动壁纸.zip",
+    "file": "downloads/plugins/interactive-wallpaper.zip",
+    "bytes": 678263164,
+    "sha256": "4779b29df9307725f155c0054761403fe3405f9e5b859e76fb61cf4133b6a3f6"
+  },
+  {
+    "name": "网易云音乐控制.zip",
+    "file": "downloads/plugins/netease-music.zip",
+    "bytes": 28028339,
+    "sha256": "743a32c267b3a00f7aa1014565451c155be2c80bf77c7901135baa7fb736c264"
+  },
+  {
+    "name": "AI 对话与控制 - Seed.zip",
+    "file": "downloads/plugins/seed-ai.zip",
+    "bytes": 3846158,
+    "sha256": "1ed53f59f3683224d38f55c7924e31abfc0a188a82a88ee63fa0d1573b72661b"
+  },
+  {
+    "name": "Gmail 邮件.zip",
+    "file": "downloads/plugins/gmail.zip",
+    "bytes": 1463805,
+    "sha256": "6e79e7581b338b1f5af827da24afdf6a14fbd04f16283aab753386e67b735bce"
+  }
+]

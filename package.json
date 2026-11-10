@@ -1,0 +1,23 @@
+{
+  "name": "robo-product-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "convert": "node scripts/convert-model.cjs",
+    "models:bom": "node scripts/build-bom-models.mjs",
+    "start": "node server/start.js"
+  },
+  "dependencies": {
+    "@threepipe/webgi-plugins": "0.7.0",
+    "three": "npm:three-modded@0.168.10008",
+    "threepipe": "0.6.0"
+  },
+  "devDependencies": {
+    "occt-import-js": "^0.0.23",
+    "vite": "^8.3.5"
+  }
+}

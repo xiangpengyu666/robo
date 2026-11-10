@@ -1,0 +1,7 @@
+# Explosion and part visibility review
+
+- `src/explosion.js`: deterministic ordered translations calculated from actual replacement geometry bounds, including hidden part 19. All parts share the same interpolant; reverse animation retraces the same paths. Axis displacement ordering preserves initial separation throughout the continuous animation. Overlapping/nested initial bounding envelopes do not grow; endpoints have a 0.12 scene-unit clearance on at least one axis. Front-panel/display/camera pair separation prefers depth.
+- This is a conservative bounding-envelope test, not triangle-level continuous collision detection or a verified physical disassembly sequence. Initially nested envelopes may contain intended cavities and contacts; the test does not certify those original fitted surfaces.
+- `scripts/validate-explosion.mjs`: 325 pairs at 101 positions; no new/increased envelope overlap; every endpoint separated, including hidden geometry. Visibility priority and individual shell overrides verified.
+- Two columns contain 19 printed parts and 7 modules. Each has independent selection and visibility. Part 19 initially off. Internal view temporarily suppresses shell parts; enabling one shell individually does not enable its neighbors. Explicitly hidden parts stay hidden when leaving internal view. View reset preserves manual visibility choices.
+- Browser: expanded/retracted assembly, Nano off, part 19 on, internal view, individual front-panel override, all 26 hidden (finite floor state; no browser errors). Build and BOM validation passed.

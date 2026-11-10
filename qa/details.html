@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>模型细节检查</title><style>body{margin:0;font:14px system-ui}nav{position:absolute;top:15px;left:15px;z-index:2}button,select{padding:10px;margin:4px}canvas{display:block}</style><nav><select id="model"><option>nano</option><option>hub</option><option>camera</option><option>matrix</option><option>servo</option></select><button id="front">正面</button><button id="back">背面</button><button id="oblique">斜视</button><span id="status"></span></nav><script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {createRenderingPipeline} from '../src/rendering.js';
+const renderer=new THREE.WebGLRenderer({antialias:true});document.body.append(renderer.domElement);
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,innerWidth/innerHeight,.01,100),controls=new OrbitControls(camera,renderer.domElement);
+const pipeline=createRenderingPipeline(renderer,scene,camera);const light=new THREE.DirectionalLight(0xffffff,1.2);light.position.set(0,-4,2);scene.add(light);
+let model;const select=document.querySelector('select'),status=document.querySelector('#status');
+function pose(view){camera.up.set(0,0,-1);camera.position.set(...(view==='back'?[0,-6,0]:view==='front'?[0,6,0]:[2,5,3]));if(select.value==='servo'){camera.up.set(0,1,0);camera.position.set(...(view==='back'?[0,0,-6]:view==='front'?[0,0,6]:[3,2,5]));}controls.target.set(0,0,0);controls.update();}
+async function load(){status.textContent='加载中';if(model){scene.remove(model);model.traverse(m=>{if(m.isMesh){m.geometry.dispose();m.material.dispose();}});}const asset=await new GLTFLoader().loadAsync('/models/components/'+select.value+'.glb');model=asset.scene;const bounds=new THREE.Box3().setFromObject(model),size=bounds.getSize(new THREE.Vector3());const scale=2.8/Math.max(...size.toArray());model.position.copy(bounds.getCenter(new THREE.Vector3())).multiplyScalar(-scale);model.scale.setScalar(scale);model.traverse(m=>{if(m.isMesh){m.castShadow=!m.userData.detailSurface;m.receiveShadow=!m.userData.detailSurface;}});scene.add(model);pose('front');status.textContent=select.value+' · 已加载';}
+select.onchange=load;for(const id of ['front','back','oblique'])document.getElementById(id).onclick=()=>pose(id);
+function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();pipeline.resize(innerWidth,innerHeight);}addEventListener('resize',resize);resize();await load();renderer.setAnimationLoop(()=>{controls.update();pipeline.render(.016);});
+</script></html>

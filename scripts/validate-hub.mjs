@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {createServer} from 'node:http';
+import {mkdtemp,readdir,readFile,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join,resolve,sep} from 'node:path';
+import {createHubApi} from '../server/hub.js';
+const directory=await mkdtemp(join(tmpdir(),'robo-hub-test-'));
+const api=createHubApi({directory});
+const server=createServer((req,res)=>api(req,res,()=>{res.writeHead(404);res.end();}));
+await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const url=`http://127.0.0.1:${server.address().port}/api/hub/submissions`;
+const valid={name:'测试外观',author:'test',email:'test@example.com',url:'https://example.com/project',category:'3d',compatibility:'ROBO',license:'Pending review',description:'<script>example</script>',permission:true};
+const post=(body,extra={})=>fetch(url,{method:'POST',headers:{'Content-Type':'application/json',...extra},body:JSON.stringify(body)});
+try{
+ assert.equal((await fetch(url)).status,405);
+ assert.equal((await post(valid,{Origin:'https://unrelated.example'})).status,403);
+ assert.equal((await post({...valid,url:'javascript:alert(1)'})).status,400);
+ assert.equal((await post({...valid,permission:false})).status,400);
+ assert.equal((await post({...valid,name:''})).status,400);
+ assert.equal((await post({...valid,category:'unknown'})).status,400);
+ const responses=await Promise.all([post({...valid,category:'robot'}),post(valid),post(valid)]);
+ assert.ok(responses.every(response=>response.status===201));
+ const receipt=await responses[0].json();assert.equal(receipt.status,'pending');assert.equal(receipt.email,undefined);
+ const files=await readdir(directory);assert.equal(files.length,3);
+ const saved=JSON.parse(await readFile(join(directory,receipt.id+'.json'),'utf8'));
+ assert.equal(saved.email,valid.email);assert.equal(saved.status,'pending');assert.equal(saved.name,valid.name);
+ assert.equal(saved.category,'robot');
+ assert.equal((await post(valid)).status,429);
+ assert.equal((await fetch(url)).status,405);
+ console.log('PASS: private persisted review inbox, concurrent submissions, validation, consent, origin, URL safety and rate limit.');
+}finally{await new Promise(resolve=>server.close(resolve));const target=resolve(directory);assert.ok(target.startsWith(resolve(tmpdir())+sep)&&target.includes('robo-hub-test-'));await rm(target,{recursive:true,force:true});}

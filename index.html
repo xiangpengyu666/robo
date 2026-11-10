@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="探索 ROBO 官方机器人、3D 外观组件、软件与插件，获取产品资料与下载资源。">
+<title>ROBO Hub</title><link rel="icon" href="data:,">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="./" aria-label="ROBO 首页">robo<span>®</span></a>
+  <nav class="language-switch" aria-label="语言 / Language">
+    <button type="button" class="contact-trigger" aria-haspopup="dialog" data-zh="联系我们" data-en="Contact">联系我们</button>
+    <span class="header-divider" aria-hidden="true">|</span>
+    <button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-language="en" lang="en" aria-pressed="false">EN</button>
+  </nav>
+</header>
+<main class="hub-shell">
+  <div class="hub-masthead">
+    <div class="hub-intro"><h1>ROBO Hub</h1><p data-zh="探索 ROBO 官方作品，获取产品资料与下载资源。" data-en="Explore official ROBO projects, product guides and downloads.">探索 ROBO 官方作品，获取产品资料与下载资源。</p></div>
+  </div>
+  <div class="hub-layout">
+    <aside class="hub-sidebar" aria-label="目录筛选">
+      <div class="sidebar-filters">
+        <div class="sidebar-group">
+          <h2 data-zh="作品分类" data-en="Categories">作品分类</h2>
+          <div class="category-nav" role="group" aria-label="作品分类">
+            <button type="button" data-category="all" aria-pressed="true" data-zh="全部作品" data-en="All creations">全部作品</button>
+            <button type="button" data-category="robot" aria-pressed="false" data-zh="ROBO 版本" data-en="ROBO versions">ROBO 版本</button>
+            <button type="button" data-category="3d" aria-pressed="false" data-zh="3D 外观组件" data-en="3D Exterior Components">3D 外观组件</button>
+            <button type="button" data-category="software" aria-pressed="false" data-zh="软件与插件" data-en="Software & plugins">软件与插件</button>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-tip">
+        <p data-zh="你的想法，让 ROBO 更好。" data-en="Your ideas make ROBO better.">你的想法，让 ROBO 更好。</p>
+        <button type="button" class="idea-trigger" aria-haspopup="dialog" aria-controls="idea-dialog" data-zh="告诉我们你的想法💡" data-en="Share your ideas💡">告诉我们你的想法💡</button>
+      </div>
+    </aside>
+    <section class="hub-results" aria-labelledby="section-title">
+      <div class="catalog-toolbar">
+        <div class="results-heading"><h2 id="section-title">全部作品</h2><span id="result-count" role="status"></span></div>
+      </div>
+      <details id="software-guide" class="software-guide" hidden>
+        <summary data-zh="基础软件与插件如何安装" data-en="Installing the base app and plugins">基础软件与插件如何安装</summary>
+        <p data-zh="解压并运行 ROBO 基础软件，即可连接机器人并编辑动作和表情。需要更多功能时，可按需安装插件。" data-en="Extract and run ROBO Base Software to connect your robot and edit motions and expressions. Install plugins as needed.">解压并运行 ROBO 基础软件，即可连接机器人并编辑动作和表情。需要更多功能时，可按需安装插件。</p>
+        <ol id="software-install-steps"></ol>
+        <p class="install-note" data-zh="插件 ZIP 需先解压，再拖入对应插件文件夹。部分插件需要配置账号或密钥，详见各插件的安装说明。" data-en="Extract each plugin ZIP before dragging in its folder. Some plugins need an account or service key; see each plugin’s install guide for details.">插件 ZIP 需先解压，再拖入对应插件文件夹。部分插件需要配置账号或密钥，详见各插件的安装说明。</p>
+      </details>
+      <div id="catalog" class="catalog"></div>
+      <div id="empty" class="empty-state" hidden><h3 id="empty-title">暂无作品</h3><p id="empty-description"></p></div>
+    </section>
+  </div>
+</main>
+<dialog id="contact" class="hub-dialog contact-dialog" aria-labelledby="contact-title">
+  <button type="button" class="dialog-close" aria-label="关闭">×</button><h2 id="contact-title" data-zh="联系我们" data-en="Contact">联系我们</h2>
+  <a class="contact-email" href="mailto:xiangpengyu020104@gmail.com">xiangpengyu020104@gmail.com <span aria-hidden="true">↗</span></a>
+</dialog>
+<dialog id="detail" class="hub-dialog" aria-labelledby="detail-title"><button type="button" class="dialog-close" aria-label="关闭">×</button><div id="detail-content"></div></dialog>
+<dialog id="idea-dialog" class="hub-dialog idea-dialog" aria-labelledby="idea-title">
+  <button type="button" class="dialog-close" aria-label="关闭">×</button>
+  <h2 id="idea-title" data-zh="告诉我们你的想法💡" data-en="Share your ideas💡">告诉我们你的想法💡</h2>
+  <p class="dialog-lead" data-zh="你的想法，让 ROBO 更好。" data-en="Your ideas make ROBO better.">你的想法，让 ROBO 更好。</p>
+  <label for="idea-message" data-zh="你希望 ROBO 能做什么？" data-en="What would you like ROBO to do?">你希望 ROBO 能做什么？</label>
+  <textarea id="idea-message" rows="4" maxlength="2000"></textarea>
+  <div class="idea-actions"><a id="idea-send" class="primary" href="mailto:xiangpengyu020104@gmail.com" data-zh="发送邮件 ↗" data-en="Send email ↗">发送邮件 ↗</a></div>
+  <p class="idea-note" data-zh="通过邮件与我们分享建议，不会在网站公开。" data-en="Share your suggestions by email. They will not be published on the website.">通过邮件与我们分享建议，不会在网站公开。</p>
+  <a class="idea-address" href="mailto:xiangpengyu020104@gmail.com">xiangpengyu020104@gmail.com</a>
+  <p id="idea-status" role="status"></p>
+</dialog>
+<script type="module" src="/src/hub.js"></script>
+</body></html>

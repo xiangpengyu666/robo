@@ -1,0 +1,99 @@
+/* Shared visual foundation for the explorer and ROBO Hub. */
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Variable.ttf') format('truetype');
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+:root {
+  --page: #f9f9f9;
+  --ink: #242424;
+  --muted: #797979;
+  --line: #e4e4e4;
+  --accent: #c9500b;
+  --brand-orange: #d8580c;
+  --rail: clamp(190px, 17vw, 340px);
+  --inspector: clamp(420px, 30vw, 660px);
+  --gutter: clamp(22px, 3vw, 68px);
+  font-family: 'Manrope', 'Alibaba PuHuiTi 3', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: var(--ink);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-header {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr) var(--inspector);
+  align-items: center;
+  flex: none;
+  height: clamp(70px, 9dvh, 100px);
+  padding: 0 var(--gutter);
+  border: 0;
+  background: var(--page);
+}
+.site-header .brand {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  color: var(--brand-orange);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: clamp(42px, 2.5vw, 48px);
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-decoration: none;
+}
+.site-header .brand span {
+  font-size: 10px;
+  vertical-align: top;
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+.site-header .language-switch {
+  position: absolute;
+  top: 50%;
+  right: var(--gutter);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-header .language-switch button {
+  min-width: 52px;
+  min-height: 48px;
+  padding: 8px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: clamp(15px, 1vw, 18px);
+  letter-spacing: .04em;
+  cursor: pointer;
+}
+.site-header .language-switch button[aria-pressed=true] {
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: inset 0 -1px var(--accent);
+}
+.site-header .language-switch .contact-trigger { color: var(--ink); font-weight: 700; }
+.site-header .language-switch button:hover { color: var(--accent); }
+.site-header .language-switch > span { color: #ccc; font-size: 15px; }
+.site-header .language-switch .header-divider { margin-inline: 2px; color: #c8c8c8; font-size: 20px; font-weight: 300; line-height: 1; }
+
+@media (max-width: 1150px) {
+  :root { --rail: 160px; --inspector: 380px; --gutter: 20px; }
+}
+@media (max-width: 760px) {
+  :root { --gutter: 18px; }
+  .site-header { display: flex; height: 70px; padding: 0 18px; }
+  .site-header .brand { font-size: 36px; }
+  .site-header .language-switch { right: 14px; gap: 2px; }
+  .site-header .language-switch button { min-width: 36px; min-height: 40px; padding: 5px; font-size: 13px; }
+  .site-header .language-switch .contact-trigger { font-size: 12px; }
+  .site-header .language-switch > span { font-size: 12px; }
+  .site-header .language-switch .header-divider { font-size: 16px; }
+}

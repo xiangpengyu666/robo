@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh-CN"><meta charset="UTF-8"><title>LED 默认表情 · 正面校对</title><style>body{margin:0;background:#e9ece3;font:14px sans-serif}header{position:absolute;z-index:1;top:24px;left:24px;color:#30382b}h1{font-size:22px}p{font-size:12px;color:#68715e}canvas{display:block}</style><header><h1>LED 默认表情 · 正面校对</h1><p>双眼默认点亮 / 每眼 12 个浅黄色像素</p></header><script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {createRenderingPipeline} from '../src/rendering.js';
+const renderer=new THREE.WebGLRenderer({antialias:true});document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,innerWidth/innerHeight,.01,100);
+camera.position.set(0,5.8,0);camera.up.set(0,0,1);const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,0,0);controls.enableDamping=true;
+const pipeline=createRenderingPipeline(renderer,scene,camera);
+const asset=await new GLTFLoader().loadAsync('/models/components/matrix.glb');asset.scene.scale.setScalar(.045);scene.add(asset.scene);asset.scene.traverse(m=>{if(m.isMesh){m.castShadow=true;m.receiveShadow=true;}});const backLight=new THREE.DirectionalLight(0xffffff,1.8);backLight.position.set(-2,-4,3);scene.add(backLight);
+function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();pipeline.resize(innerWidth,innerHeight);}addEventListener('resize',resize);resize();renderer.setAnimationLoop(()=>{controls.update();pipeline.render(.016);});
+</script></html>
+
+

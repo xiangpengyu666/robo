@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+
+/data/
+
+# Over GitHub's 100 MB file limit — published as GitHub Release assets instead
+public/downloads/software/robo-base.zip
+public/downloads/plugins/interactive-wallpaper.zip
