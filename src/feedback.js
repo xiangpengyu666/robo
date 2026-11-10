@@ -33,7 +33,7 @@ export function setupFeedback(){
   purchase.querySelector('.community-eyebrow').textContent='ROBO / EARLY INTEREST';
   buy.onclick=()=>{purchase.showModal();trackPurchaseInquiry(purchase);};
   const trigger=document.querySelector('.feedback-trigger');
-  const dialog=createDialog('功能建议','<p class="community-note">你的想法，让 ROBO 更好。</p><div class="message-form"><label for="feature-message">你希望 ROBO 能做什么？</label><textarea id="feature-message" rows="4" maxlength="2000"></textarea><div class="message-compose-actions"><a class="feedback-email-action" href="mailto:xiangpengyu020104@gmail.com">发送邮件 ↗</a></div><p class="message-public-note">通过邮件与我们分享建议，不会在网站公开。</p><p class="draft-status" role="status"></p></div>',trigger);
+  const dialog=createDialog('功能建议','<p class="community-note">你的想法，让 ROBO 更好。</p><div class="message-form"><label for="feature-message">你希望 ROBO 能做什么？</label><textarea id="feature-message" data-clarity-mask="true" rows="4" maxlength="2000"></textarea><div class="message-compose-actions"><a class="feedback-email-action" href="mailto:xiangpengyu020104@gmail.com">发送邮件 ↗</a></div><p class="message-public-note">通过邮件与我们分享建议，不会在网站公开。</p><p class="draft-status" role="status"></p></div>',trigger);
   dialog.classList.add('message-board');
   dialog.querySelector('.community-eyebrow').remove();
   const header=document.createElement('div');header.className='message-board-header';

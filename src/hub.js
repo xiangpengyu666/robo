@@ -1,3 +1,4 @@
+import './analytics.js';
 import './chinese-fonts.css';
 import './brand.css';
 import './hub.css';

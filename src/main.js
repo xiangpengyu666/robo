@@ -1,3 +1,4 @@
+import './analytics.js';
 import { PerspectiveCamera2 } from 'threepipe';
 import { prepareEdgeFinish } from './edge-finish.js';
 import { createFaceDiffusion } from './face-diffusion.js';
