@@ -119,7 +119,7 @@ function render() {
       '<div class="card-foot">' + (item.page ? '' : '<span>' + escape(item.format) + '</span>') + action + '</div>' +
       (item.id === 'robo-1' ? '<button class="hub-buy" type="button" aria-haspopup="dialog">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>' +
-        '<span>' + t('购买整机', 'Buy ROBO') + '</span><strong>' + t('¥368', '$60') + '</strong></button>' : '') + '</div>';
+        '<span>' + t('购买整机', 'Buy ROBO') + '</span><strong>' + t('¥368', '$58') + '</strong></button>' : '') + '</div>';
     const buy = card.querySelector('.hub-buy');
     if (buy) buy.onclick = () => {
       detailItem = null;
