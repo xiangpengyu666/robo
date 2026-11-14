@@ -4,7 +4,7 @@ export const purchaseBody = '<p>感谢你对 ROBO 的关注！目前整机暂未
 export function trackPurchaseInquiry(purchase) {
   function interestEvent(action){
     const en=document.documentElement.lang==='en';
-    window.dispatchEvent(new CustomEvent('robo:purchase-interest',{detail:{action,currency:en?'USD':'CNY',price:en?58:368,language:en?'en':'zh'}}));
+    window.dispatchEvent(new CustomEvent('robo:purchase-interest',{detail:{action,currency:en?'USD':'CNY',price:en?39:228,language:en?'en':'zh'}}));
   }
   interestEvent('open');
   purchase.querySelector('.purchase-interest-contact').onclick=event=>{
